@@ -25,4 +25,12 @@ RSpec.describe Task, type: :model do
     task.invalid?
     expect(task.errors[:status]).to include("can't be blank")
   end
+
+  # 項目に過不足がないデータはバリデーションエラーとならずに正常に作成できること
+  it "is valid when it has a sufficient value" do
+    task_a
+    task_a.invalid?
+    expect(task_a.errors[:title]).to include()
+    expect(task_a.errors[:status]).to include()
+  end
 end

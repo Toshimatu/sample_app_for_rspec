@@ -6,14 +6,14 @@ RSpec.describe Task, type: :model do
 
   # titleが存在しなければ無効であること
   it "is invalid without a title" do
-    task = Task.new(title: nil, status: 'doing')
+    task = Task.new(title: nil, status: :doing)
     expect(task).to be_invalid
   end
 
   # titleの値が重複していれば無効であること
   it "is invalid with a duplicate task's title" do
     task
-    duplicated_task = Task.create(title: 'テストタイトル', status: 'todo')
+    duplicated_task = Task.create(title: 'テストタイトル', status: :todo)
     duplicated_task.valid?
     expect(duplicated_task.errors[:title]).to include("has already been taken")
   end

@@ -27,7 +27,5 @@ RSpec.describe Task, type: :model do
   # 項目に過不足がないデータはバリデーションエラーとならずに正常に作成できること
   it "is valid when it has a sufficient value" do
     expect(task).to be_valid
-    expect(task.errors[:title]).to be_empty
-    expect(task.errors[:status]).to be_empty
   end
 end

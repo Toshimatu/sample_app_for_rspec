@@ -22,6 +22,7 @@ RSpec.describe Task, type: :model do
   it "is invalid without a status" do
     task = Task.new(title: 'テストタイトル', status: nil)
     expect(task).to be_invalid
+    expect(task.errors[:status]).to include("can't be blank")
   end
 
   # 項目に過不足がないデータはバリデーションエラーとならずに正常に作成できること

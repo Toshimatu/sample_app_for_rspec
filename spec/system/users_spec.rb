@@ -100,23 +100,17 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content('Forbidden access.')
         end
       end
-      context '他ユーザーのタスク編集ページにアクセス' do
-        it 'アクセスが失敗する' do
-          visit edit_task_path(another_user)
-          expect(page).to have_content('Forbidden access')
-        end
-      end
     end
 
     describe 'マイページ' do
       context 'タスクを作成' do
         it '新規作成したタスクが表示される' do
           visit new_task_path(user)
-          fill_in 'Title', with: 'タイトル'
+          fill_in 'Title', with: '作成したタスク'
           fill_in 'Content', with: 'コンテント'
           fill_in 'Deadline', with: '2020-04-25 23:59'
           click_button 'Create Task'
-          expect(page).to have_content('Task was successfully created.')
+          expect(page).to have_content('作成したタスク')
         end
       end
     end

@@ -92,6 +92,12 @@ RSpec.describe "Users", type: :system do
           expect(page).to have_content('Forbidden access.')
         end
       end
+      context '他ユーザーのタスク編集ページにアクセス' do
+        it 'アクセスが失敗する' do
+          visit edit_task_path(another_user)
+          expect(page).to have_content('Forbidden access')
+        end
+      end
     end
 
     describe 'マイページ' do

@@ -8,6 +8,7 @@ RSpec.describe Task, type: :model do
   it "is invalid without a title" do
     task = Task.new(title: nil, status: :doing)
     expect(task).to be_invalid
+    expect(task.errors[:title]).to include("can't be blank")
   end
 
   # titleの値が重複していれば無効であること

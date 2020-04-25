@@ -42,6 +42,14 @@ RSpec.describe "Users", type: :system do
 
     describe 'マイページ' do
       context 'ログインしていない状態' do
+        it 'タスクの新規作成ページへの遷移ができないこと' do
+          visit new_task_path(user)
+          expect(page).to have_content("Login required")
+        end
+        it 'タスクの編集ページへの遷移ができないこと' do
+          visit edit_task_path(user)
+          expect(page).to have_content("Login required")
+        end
         it 'マイページへのアクセスが失敗する' do
           visit user_path(user)
           expect(page).to have_content("Login required")

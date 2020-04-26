@@ -18,6 +18,7 @@ RSpec.describe "Tasks", type: :system do
         select 'todo', from: 'Status'
         click_button 'Create Task'
         expect(page).to have_content('Task was successfully created.')
+        expect(page).to have_content('作成したタスク')
       end
     end
     context 'タスクの編集' do
@@ -27,6 +28,7 @@ RSpec.describe "Tasks", type: :system do
         select 'doing', from: 'Status'
         click_button 'Update Task'
         expect(page).to have_content('Task was successfully updated.')
+        expect(page).to have_content('タスク編集')
       end
     end
     context 'タスクの削除' do

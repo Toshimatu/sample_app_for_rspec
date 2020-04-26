@@ -117,7 +117,6 @@ RSpec.describe "Users", type: :system do
           fill_in 'Deadline', with: '2020-04-25 23:59'
           click_button 'Create Task'
           expect(page).to have_content('作成したタスク')
-          expect(current_path).to eq tasks_path(user)
         end
       end
     end

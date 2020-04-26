@@ -78,7 +78,7 @@ RSpec.describe "Tasks", type: :system do
         click_on 'Destroy'
         page.accept_confirm "Are you sure?"
         expect(page).to have_content("Task was successfully destroyed.")
-        expect(current_path).to eq tasks_path(user)
+        expect(current_path).to eq tasks_path
       end
     end
     context '他ユーザーのタスク編集ページにアクセス' do

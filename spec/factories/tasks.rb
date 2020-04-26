@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :task do
-    title { 'ファクトリタイトル' }
+    title { 'テストタイトル' }
     status { :doing }
     user
   end

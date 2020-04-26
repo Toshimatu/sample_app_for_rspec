@@ -18,6 +18,7 @@ RSpec.describe "Users", type: :system do
           fill_in 'Password confirmation', with: 'password'
           click_button 'SignUp'
           expect(page).to have_content('User was successfully created.')
+          expect(current_path).to eq login_path
         end
       end
       context 'メールアドレスが未入力' do
@@ -26,6 +27,7 @@ RSpec.describe "Users", type: :system do
           fill_in 'Password confirmation', with: 'password'
           click_button 'SignUp'
           expect(page).to have_content("can't be blank")
+          expect(current_path).to eq users_path
         end
       end
       context '登録済メールアドレスを使用' do
@@ -36,6 +38,7 @@ RSpec.describe "Users", type: :system do
           fill_in 'Password confirmation', with: 'password'
           click_button 'SignUp'
           expect(page).to have_content("Email has already been taken")
+          expect(current_path).to eq users_path
         end
       end
     end
@@ -72,6 +75,7 @@ RSpec.describe "Users", type: :system do
           fill_in 'Password confirmation', with: 'edit'
           click_button 'Update'
           expect(page).to have_content('User was successfully updated.')
+          expect(current_path).to eq user_path(user)
         end
       end
       context 'メールアドレスが未入力時に' do
@@ -82,6 +86,7 @@ RSpec.describe "Users", type: :system do
           fill_in 'Password confirmation', with: 'edit'
           click_button 'Update'
           expect(page).to have_content("Email can't be blank")
+          expect(current_path).to eq user_path(user)
         end
       end
       context '登録済メールアドレスを使用' do
@@ -92,6 +97,7 @@ RSpec.describe "Users", type: :system do
           fill_in 'Password confirmation', with: 'edit'
           click_button 'Update'
           expect(page).to have_content('Email has already been taken')
+          expect(current_path).to eq user_path(user)
         end
       end
       context '他ユーザーの編集ページにアクセス' do
@@ -111,6 +117,7 @@ RSpec.describe "Users", type: :system do
           fill_in 'Deadline', with: '2020-04-25 23:59'
           click_button 'Create Task'
           expect(page).to have_content('作成したタスク')
+          expect(current_path).to eq tasks_path(user)
         end
       end
     end

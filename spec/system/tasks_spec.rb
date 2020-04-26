@@ -26,6 +26,7 @@ RSpec.describe "Tasks", type: :system do
           select 'todo', from: 'Status'
           click_button 'Create Task'
           expect(page).to have_content("Title can't be blank")
+          expect(current_path).to eq tasks_path
         end
       end
       context '作成済みのタイトルを使用' do
@@ -36,6 +37,7 @@ RSpec.describe "Tasks", type: :system do
           click_button 'Create Task'
           expect(page).to have_content('Title has already been taken')
           expect(page).to_not have_content('テストタイトル')
+          expect(current_path).to eq tasks_path
         end
       end
     end
@@ -75,7 +77,8 @@ RSpec.describe "Tasks", type: :system do
         visit tasks_path(user)
         click_on 'Destroy'
         page.accept_confirm "Are you sure?"
-        expect(page).to have_content('Task was successfully destroyed.')
+        expect(page).to have_content("Task was successfully destroyed.")
+        expect(current_path).to eq tasks_path(user)
       end
     end
     context '他ユーザーのタスク編集ページにアクセス' do

@@ -62,9 +62,7 @@ RSpec.describe "Users", type: :system do
   end
 
   describe 'ログイン後' do
-    before do
-      log_in
-    end
+    before { log_in }
 
     describe 'ユーザー編集' do
       context 'フォームの入力値が正常' do

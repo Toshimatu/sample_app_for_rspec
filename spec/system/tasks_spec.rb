@@ -23,7 +23,7 @@ RSpec.describe "Tasks", type: :system do
       context 'タイトルが未入力時に' do
         it 'タスクの作成が失敗すること' do
           visit new_task_path(user)
-          select 'todo', from: 'Status'
+          select :todo, from: 'Status'
           click_button 'Create Task'
           expect(page).to have_content("Title can't be blank")
           expect(current_path).to eq tasks_path
@@ -33,7 +33,7 @@ RSpec.describe "Tasks", type: :system do
         it 'タスクの作成が失敗' do
           visit new_task_path(user)
           fill_in 'Title', with: 'テストタイトル'
-          select 'todo', from: 'Status'
+          select :todo, from: 'Status'
           click_button 'Create Task'
           expect(page).to have_content('Title has already been taken')
           expect(page).to_not have_content('テストタイトル')
@@ -46,7 +46,7 @@ RSpec.describe "Tasks", type: :system do
         it 'タスクの編集ができること' do
           visit edit_task_path(user)
           fill_in 'Title', with: 'タスク編集'
-          select 'doing', from: 'Status'
+          select :doing, from: 'Status'
           click_button 'Update Task'
           expect(page).to have_content('Task was successfully updated.')
           expect(page).to have_content('タスク編集')
@@ -56,7 +56,7 @@ RSpec.describe "Tasks", type: :system do
         it 'タスクの編集ができないこと' do
           visit edit_task_path(user)
           fill_in 'Title', with: ''
-          select 'todo', from: 'Status'
+          select :todo, from: 'Status'
           click_button 'Update Task'
           expect(page).to have_content("Title can't be blank")
         end
@@ -66,7 +66,7 @@ RSpec.describe "Tasks", type: :system do
           task = Task.create(title: '作成済みタイトル', status: :todo)
           visit edit_task_path(user)
           fill_in 'Title', with: '作成済みタイトル'
-          select 'todo', from: 'Status'
+          select :todo, from: 'Status'
           click_button 'Update Task'
           expect(page).to have_content("Title has already been taken")
         end
